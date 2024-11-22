@@ -17,3 +17,11 @@
     max-height: 400px;
     object-fit: cover;
 }
+
+.required:after {
+    content: '*';
+    color: red;
+    margin-left: 3px;
+}
+
+
