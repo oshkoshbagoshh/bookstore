@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,4 +47,30 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // ROLES
+    const ROLE_ADMIN = 'admin';
+    const ROLE_REVIEWER = 'reviewer';
+    const ROLE_CUSTOMER = 'customer';
+
+    public function getRoleOptions(): array
+    {
+        return [
+            self::ROLE_ADMIN,
+            self::ROLE_REVIEWER,
+            self::ROLE_CUSTOMER,
+        ];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if (!in_array($user->role, $user->getRoleOptions())) {
+                throw new \InvalidArgumentException('Invalid role specified');
+            }
+        });
+    }
+
 }

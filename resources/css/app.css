@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom styles */
+.star-rating {
+    color: #ffc107;
+}
+
+.review-form .star-rating {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.book-cover {
+    max-height: 400px;
+    object-fit: cover;
+}
