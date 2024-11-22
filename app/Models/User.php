@@ -1,5 +1,3 @@
-<?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -73,12 +71,13 @@ class User extends Authenticatable
         });
     }
 
-    public function isAdmin(): {
+    public function isAdmin()
+    {
         return $this->role === self::ROLE_ADMIN;
     }
 
-    public function isReviewer(){
+    public function isReviewer()
+    {
         return $this->role === self::ROLE_REVIEWER;
     }
-
 }
