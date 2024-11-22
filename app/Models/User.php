@@ -73,4 +73,12 @@ class User extends Authenticatable
         });
     }
 
+    public function isAdmin(): {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isReviewer(){
+        return $this->role === self::ROLE_REVIEWER;
+    }
+
 }
